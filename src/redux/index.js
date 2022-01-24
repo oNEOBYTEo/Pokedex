@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   name: "",
   isDark: false,
-  pokemonsPerPage: 16
+  pokemonsPerPage: 16,
 }
 
 const reducer = (state = INITIAL_STATE, action) => {

@@ -1,10 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Playfair+Display:ital,wght@0,400;1,600&family=Poppins:wght@400;500;600&family=Raleway:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
+@import url('http://fonts.cdnfonts.com/css/pokemon-solid');
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+}
+.container-input {
+  background-color: #fafaf9;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+  overflow: hidden;
+}
+
+
+.title-input {
+  text-align: center;
+  font-family: 'Pokemon Solid', sans-serif;
+  font-weight: 300;
+  color: #1f2937;
+}
+
+.label-input{
+  display: block;
+  margin-bottom: 3px;
+  text-indent: 40px;
+}
+
+.label-input+input {
+  position: relative;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  z-index: 30;
+}
+.label-input+input+button{
+  position: absolute;
+  top: calc(200px - -16vh);
+  left: calc(220px - 5vw);
+  transform: scale(2);
+  padding: 7px;
+  width: 85px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.30);
+  z-index: 30;
+}
+
+.title-picture {
+  z-index: 10; 
+  transform: scale(0.3) rotate(0deg);
+  position: absolute;
+  top: calc(-100px - 15vh);
+  left: calc(-350px - 40vw);
+}
+
+.item-pokeball{
+  position: absolute;
+  top: 75vh;
+  left: 10px;
+  animation: spin 3.5s linear infinite;
+  z-index: 20;
 }
 
 .light {
@@ -51,7 +111,8 @@ main{
 
 .pokemon-header>img {
   position: absolute;
-  width: 50%;
+  min-width: 50%;
+  max-height: 172px;
   top: 6rem;
 }
 
@@ -66,10 +127,10 @@ main{
 .middle {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   background:  #f5f5f4;
   width: 100%;
+  box-shadow: 1px 50px 50px 12px #000000; 
 }
 
 .types{
@@ -78,6 +139,7 @@ main{
   align-items: center;
   justify-content: space-evenly;
   flex-direction: row;
+  padding: 10px;
 }
 .types>li {
   background-color: #fb923c;
@@ -88,6 +150,48 @@ main{
   text-transform: uppercase;
   font-weight: 600;
   border-radius: 10px;
+}
+
+.feature{
+  border-top: 1px solid #e7e5e4;
+  border-bottom: 1px solid #e7e5e4;
+  padding: 10px;
+}
+
+.moves-container{
+  transition: all 1s;
+  overflow: auto;
+}
+
+
+.moves {
+  list-style: none;
+  text-align: center;
+  background-color: #f9fafb;
+  border-radius: 20px;
+  box-shadow: 8px 22px 32px -17px rgba(0,0,0,0.82);
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+}
+
+.moves__button {
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  background-color: #fb923c;
+  border-radius: 50%;
+  border: none;
+  font-size: 50px;
+  font-weight: 300;
+  padding: 7px;
+  margin: 20px;
+  transition: 1s ease;
+}
+
+.moves__button--rotate {
+  transform: rotate(180deg);
+  transition: transform 1s ease;
 }
 
 .container {
@@ -108,7 +212,6 @@ main{
   padding: 24px 10px 18px;
   background: linear-gradient(#616161 0%, #333 10%, #222);
   border-radius: 8px;
-
   border: 2px solid #000;
   transition: 0.5s;
 }
@@ -166,4 +269,9 @@ main{
   from{
     width: 0;
   }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

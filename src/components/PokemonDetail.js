@@ -5,6 +5,7 @@ import CheckImage from "./CheckImage";
 
 const PokemonDetail = () => {
   const { id } = useParams();
+  const [isClose, setIsClose] = useState(true)
   const [pokemon, setPokemon] = useState({});
 
   
@@ -15,6 +16,9 @@ const PokemonDetail = () => {
   }, [id]);
   
   const [imageDreamWord, imageHome, imageOficcialArtwork, imageDefault] = CheckImage(pokemon)
+
+  const moreInfo = () => setIsClose(!isClose)
+
   console.log(pokemon)
   return (
     <main>
@@ -41,18 +45,22 @@ const PokemonDetail = () => {
             
           </ul>
         </section>
-        <section className="middle">
+        <section className="middle feature">
           <h2>Features</h2>
           <ul>
             <li>Pokemon Weight: {pokemon.weight}/Hg</li>
             <li>Pokemon Height: {pokemon.height}/Dm</li>
           </ul>
+          <button className={`moves__button ${isClose && "moves__button--rotate"}`} onClick={moreInfo}>^</button>
         </section>
-        <section className="middle">
+        <section 
+          className={`middle moves-container`} 
+          style={{height: isClose ? 0 : "500px"}}
+        >
           <h2>Moves</h2>
           <ul>
             {
-              pokemon?.moves?.map( pokemonMove =>  <li key={pokemonMove.move.url}>{pokemonMove.move.name}</li>)
+              pokemon?.moves?.map( pokemonMove =>  <li key={pokemonMove.move.url} className="moves">{pokemonMove.move.name}</li>)
             }
           </ul>
         </section>
