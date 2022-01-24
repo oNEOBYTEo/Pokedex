@@ -1,0 +1,46 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import React from 'react';
+
+const Config = () => {
+
+  const navigate = useNavigate();
+
+  const darkMode = useSelector(state => state.isDark)
+
+  const dispatch = useDispatch();
+
+  const numbers = [4,8,12,16,20]
+
+  const setNumber = (number) => {
+    dispatch({type: "SET_PAGE", payload: number})
+  }
+
+  const setMode = () => {
+    dispatch({type: "SET_DARK_MODE"})
+  }
+
+  return ( 
+    <section>
+      <div className="container-page">
+        <h1>Select Pokemons Per Page</h1>
+        <select onChange={e => setNumber(e.target.value) }>
+          {
+            numbers.map(number => <option key={number} value={number}>{number}</option>)
+          }
+        </select>
+      </div>
+      <div className="container-dark-mode">
+        <h2>Select Mode</h2>
+
+        {
+          !darkMode ? <button className="dark" onClick={setMode}>DARK MODE</button> : <button className="light" onClick={setMode}>LIGHT MODE</button>
+          
+        }
+      </div>
+      <button onClick={() => navigate('../pokedex/')}>Pokedex</button>
+    </section>
+   );
+}
+ 
+export default Config;
