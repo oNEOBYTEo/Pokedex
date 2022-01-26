@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import pokeball from '../images/pokeball.png'
+import pikachu from '../images/pikachu.png'
 
 const NameInput = () => {
 
@@ -18,7 +19,7 @@ const NameInput = () => {
     return ( 
         <div className='container-input'>
             <h1 className="title-input item-input">WELCOME POKEMON TRAINER</h1>
-            <img src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png" alt="pokemon" className='title-picture' />
+            <img src={pikachu} className='title-picture' alt="pikachu" />
             <form onSubmit={submit}>
                 <label htmlFor="input-name" className="label-input">
                     Put your name: 

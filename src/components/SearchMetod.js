@@ -24,7 +24,7 @@ const SearchMetod = ({pokemonsTypes, setPokemons, setPage}) => {
 
   return ( 
     <>
-      <select onChange={e => filterPokemons(e.target.value)} >
+      <select onChange={e => filterPokemons(e.target.value) } className="header-item search" >
         {
           pokemonsTypes.map(pokemonType => (
             <option key={pokemonType.url} value={pokemonType.url}>
@@ -34,6 +34,7 @@ const SearchMetod = ({pokemonsTypes, setPokemons, setPage}) => {
         }
       </select>
       <input
+      className="header-item search"
       type="text"
       value={pokemonSearched}
       onChange={(e) => setPokemonSearched(e.target.value)}
@@ -41,7 +42,7 @@ const SearchMetod = ({pokemonsTypes, setPokemons, setPage}) => {
       placeholder='Name: "Pikachu" or ID: "25"'
       onKeyPress={e => enterPress(e)}
       />
-      <button onClick={search} >Submit</button>
+      <button className="header-item search" onClick={search} >Submit</button>
     </>
    );
 }

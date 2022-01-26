@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CheckImage from "./CheckImage";
+import CheckColor from "./CheckColor";
 
 const PokemonDetail = () => {
   const { id } = useParams();
@@ -19,25 +20,25 @@ const PokemonDetail = () => {
 
   const moreInfo = () => setIsClose(!isClose)
 
-  console.log(pokemon)
+
   return (
-    <main>
+    <main style={{background: `${CheckColor(pokemon)}`}}>
       <article className="pokemon-detail">
 
         <section className="pokemon-header">
           <h1>Pokemon Detail</h1>
-          <h2>{pokemon.name}</h2>
+          <h2>{pokemon.name} / ID: {pokemon.id}</h2>
           <img src={imageDreamWord ? imageDreamWord : imageOficcialArtwork ? imageOficcialArtwork : imageHome ? imageHome : imageDefault } alt="pokemon" />
         </section>
         <section className="middle">
           <h2>Type/s</h2>
           <ul className="types">
-            <li>
+            <li style={{background: `${CheckColor(pokemon)}`}} >
               <span>{pokemon.types?.[0]?.type?.name}</span>
             </li>
             {
               pokemon.types?.[1]?.type?.name ? (
-                <li>
+                <li style={{background: `${CheckColor(pokemon)}`}}>
                   <span>{pokemon.types?.[1]?.type?.name}</span>
                 </li>
               ) : (<li style={{display: 'none'}}></li>)
@@ -51,7 +52,7 @@ const PokemonDetail = () => {
             <li>Pokemon Weight: {pokemon.weight}/Hg</li>
             <li>Pokemon Height: {pokemon.height}/Dm</li>
           </ul>
-          <button className={`moves__button ${isClose && "moves__button--rotate"}`} onClick={moreInfo}>^</button>
+          <button className={`moves__button ${isClose && "moves__button--rotate"}`} onClick={moreInfo} style={{background: `${CheckColor(pokemon)}`}}>^</button>
         </section>
         <section 
           className={`middle moves-container`} 

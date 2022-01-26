@@ -6,6 +6,7 @@ import Senttings from './Settings';
 import ButtonsPreNext from './ButtonsPreNext'
 import { Link } from 'react-router-dom';
 import { IoMdCog } from "react-icons/io";
+import { useState } from 'react';
 
 const Pokemons = () => {
   const name = useSelector((state) => state.name)
@@ -13,33 +14,36 @@ const Pokemons = () => {
   const [setPokemons, pokemons, pokemonsTypes] = AxiosRequest()
 
   const [setPage, paginatedCharacters, totalPages, page] = Senttings(pokemons)
-  
+ 
 
   return ( 
     <>
-      <section>
-        <h1>Pokemons</h1>
-        <p>Welcome {name}!</p>
-        <SearchMetod pokemonsTypes={pokemonsTypes} setPokemons={setPokemons} setPage={setPage} />
-        <Link to="/config">{<IoMdCog />}</Link>
+      <section className="pokemons-container">
+        <div className="pokemons-header">
+          <h1 className="header-item">Pokemons</h1>
+          <p className="header-item">Welcome {name}!</p>
+          <SearchMetod pokemonsTypes={pokemonsTypes} setPokemons={setPokemons} setPage={setPage} className="header-item" />
+          <Link to="/config" className="config" >{<IoMdCog />}</Link>
+        </div>
         <ul className="pokemons-list">
+
           {
             paginatedCharacters.map(pokemon => (
-              <li key={pokemon.url ? pokemon.url : pokemon.pokemon.url} className="pokemon-column">
-                <PokemonInfo url={pokemon.url ? pokemon.url : pokemon.pokemon.url} />
+              <li key={pokemon.url ? pokemon.url : pokemon.pokemon.url} className="pokemon">
+                <PokemonInfo url={pokemon.url ? pokemon.url : pokemon.pokemon.url}/>
               </li>
             ))
           }
         </ul>
+        <div class="pokemons-buttons">
+          <ButtonsPreNext 
+            page={page} 
+            totalPages={totalPages}
+            setPage={setPage}
+            length={pokemons.length}
+          />
+        </div>
       </section>
-      <div>
-        <ButtonsPreNext 
-          page={page} 
-          totalPages={totalPages}
-          setPage={setPage}
-          length={pokemons.length}
-        />
-      </div>
     </>
    );
 }

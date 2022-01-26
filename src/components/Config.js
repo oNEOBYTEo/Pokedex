@@ -21,7 +21,7 @@ const Config = () => {
   }
 
   return ( 
-    <section>
+    <section  className="config-container">
       <div className="container-page">
         <h1>Select Pokemons Per Page</h1>
         <select onChange={e => setNumber(e.target.value) }>
