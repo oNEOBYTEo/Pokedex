@@ -6,7 +6,6 @@ import Senttings from './Settings';
 import ButtonsPreNext from './ButtonsPreNext'
 import { Link } from 'react-router-dom';
 import { IoMdCog } from "react-icons/io";
-import { useState } from 'react';
 
 const Pokemons = () => {
   const name = useSelector((state) => state.name)
