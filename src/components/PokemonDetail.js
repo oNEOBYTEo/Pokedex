@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CheckImage from "./CheckImage";
 import CheckColor from "./CheckColor";
+import { useSelector } from "react-redux";
 
 const PokemonDetail = () => {
   const { id } = useParams();
   const [isClose, setIsClose] = useState(true)
   const [pokemon, setPokemon] = useState({});
-
+  const isDark = useSelector(state => state.isDark)
   
   useEffect(() => {
     axios
@@ -20,9 +21,10 @@ const PokemonDetail = () => {
 
   const moreInfo = () => setIsClose(!isClose)
 
+  const darkColor = "#292524"
 
   return (
-    <main style={{background: `${CheckColor(pokemon)}`}}>
+    <main style={{background: `${isDark ? darkColor : CheckColor(pokemon)}`}}>
       <article className="pokemon-detail">
 
         <section className="pokemon-header">
@@ -33,12 +35,16 @@ const PokemonDetail = () => {
         <section className="middle">
           <h2>Type/s</h2>
           <ul className="types">
-            <li style={{background: `${CheckColor(pokemon)}`}} >
+            <li style={{
+              background: `${isDark ? darkColor : CheckColor(pokemon)}`, 
+              color: `${isDark && "#fff"}`}} >
               <span>{pokemon.types?.[0]?.type?.name}</span>
             </li>
             {
               pokemon.types?.[1]?.type?.name ? (
-                <li style={{background: `${CheckColor(pokemon)}`}}>
+                <li style={{
+                  background: `${isDark ? darkColor : CheckColor(pokemon)}`,
+                  color: `${isDark && "#fff"}`}}>
                   <span>{pokemon.types?.[1]?.type?.name}</span>
                 </li>
               ) : (<li style={{display: 'none'}}></li>)
@@ -52,7 +58,12 @@ const PokemonDetail = () => {
             <li>Pokemon Weight: {pokemon.weight}/Hg</li>
             <li>Pokemon Height: {pokemon.height}/Dm</li>
           </ul>
-          <button className={`moves__button ${isClose && "moves__button--rotate"}`} onClick={moreInfo} style={{background: `${CheckColor(pokemon)}`}}>^</button>
+          <button 
+          className={`moves__button ${isClose && "moves__button--rotate"}`}
+          onClick={moreInfo} 
+          style={{background: `${isDark ? darkColor : CheckColor(pokemon)}`}}>
+            ^
+            </button>
         </section>
         <section 
           className={`middle moves-container`} 

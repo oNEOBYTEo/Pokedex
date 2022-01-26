@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import CheckImage from './CheckImage';
 import CheckColor from './CheckColor';
 import pokeball from '../images/pokeball.png'
+import { useSelector } from 'react-redux';
 
 const PokemonsInfo = ({url}) => {
 
   const [ pokemon, setPokemon ] = useState({})
+  const isDark = useSelector(state => state.isDark)
   
   useEffect(() => {
     axios
@@ -17,12 +19,17 @@ const PokemonsInfo = ({url}) => {
 
   const [imageDreamWord, imageHome, imageOficcialArtwork, imageDefault] = CheckImage(pokemon)
 
-  console.log(typeof(CheckColor(pokemon)))
+  const darkColor = "#292524"
   
   return ( 
-    <Link to={`/pokedex/${pokemon.id}`} className='pokemon-card' style={{background: `${CheckColor(pokemon)}`}} >
-      <img className='pokeball' src={pokeball} alt="pokeball"/>
-      <img className='main-pokemon-images' src={imageDreamWord ? imageDreamWord : imageOficcialArtwork ? imageOficcialArtwork : imageHome ? imageHome : imageDefault } alt="Pokemon" />
+    <Link to={`/pokedex/${pokemon.id}`} className='pokemon-card' style={{background: `${isDark ? darkColor : CheckColor(pokemon)}`,color: `${isDark && "#fff"}`}} >
+      <img 
+      className='pokeball' 
+      src={pokeball} alt="pokeball"/>
+      <img 
+      className='main-pokemon-images' 
+      src={imageDreamWord ? imageDreamWord : imageOficcialArtwork ? imageOficcialArtwork : imageHome ? imageHome : imageDefault } 
+      alt="Pokemon" />
       <ul className="pokemon-info">
         <li>Name: {pokemon.name}</li>
         <li>Principal Type: {pokemon.types?.[0]?.type?.name}</li>

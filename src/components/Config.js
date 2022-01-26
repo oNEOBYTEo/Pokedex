@@ -24,9 +24,14 @@ const Config = () => {
     <section  className="config-container">
       <div className="container-page">
         <h1>Select Pokemons Per Page</h1>
-        <select onChange={e => setNumber(e.target.value) }>
+        <select className="container-select" 
+        onChange={e => setNumber(e.target.value) }>
           {
-            numbers.map(number => <option key={number} value={number}>{number}</option>)
+            numbers.map(number => <option 
+              className="option" 
+              key={number} 
+              value={number}>{number}
+            </option>)
           }
         </select>
       </div>
@@ -34,11 +39,28 @@ const Config = () => {
         <h2>Select Mode</h2>
 
         {
-          !darkMode ? <button className="dark" onClick={setMode}>DARK MODE</button> : <button className="light" onClick={setMode}>LIGHT MODE</button>
+          !darkMode ? <button 
+          className="dark" 
+          onClick={setMode}>
+            DARK MODE
+          </button> : 
+          <button 
+          className="light" 
+          onClick={setMode}>
+            LIGHT MODE
+          </button>
           
         }
       </div>
-      <button onClick={() => navigate('../pokedex/')}>Pokedex</button>
+      <button 
+      style={{
+        width: "50%", 
+        border: "none",
+        borderRadius: "20px",
+        background: "#dc2626d7",
+        minHeight: "5vh"
+        }} 
+      onClick={() => navigate('../pokedex/')}>Pokedex</button>
     </section>
    );
 }

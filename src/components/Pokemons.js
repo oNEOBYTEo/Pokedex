@@ -5,7 +5,7 @@ import SearchMetod from './SearchMetod';
 import Senttings from './Settings';
 import ButtonsPreNext from './ButtonsPreNext'
 import { Link } from 'react-router-dom';
-import { IoMdCog } from "react-icons/io";
+import { IoMdCog } from "react-icons/io"; 
 
 const Pokemons = () => {
   const name = useSelector((state) => state.name)
@@ -34,7 +34,7 @@ const Pokemons = () => {
             ))
           }
         </ul>
-        <div class="pokemons-buttons">
+        <div className="pokemons-buttons">
           <ButtonsPreNext 
             page={page} 
             totalPages={totalPages}
