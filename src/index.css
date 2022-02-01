@@ -697,8 +697,12 @@ main{
   }
 
   .pokemon-card {
-    min-height: 430px;
+    height: 430px;
     padding: 40px;
+  }
+
+  .pokemon-info {
+    overflow: auto;
   }
 
 
