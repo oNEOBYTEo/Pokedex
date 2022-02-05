@@ -85,7 +85,7 @@ const PokemonDetail = () => {
                   {pokemonStats?.stat?.name}
                 </span>
                 <div className="stat__percent">
-                  <div id={pokemonStats?.stat?.name} className="stat__progress" style={{width: `${pokemonStats?.base_stat}%`}}>.</div>
+                  <div id={pokemonStats?.stat?.name} className="stat__progress" style={{width: `${pokemonStats?.base_stat}%`}}>&nbsp;</div>
                 </div>
                 <span className="stat__value">
                   {pokemonStats?.base_stat}%
